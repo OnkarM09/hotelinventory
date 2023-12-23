@@ -1,0 +1,37 @@
+<app-header></app-header>
+<app-header></app-header>
+<app-header></app-header>
+
+<h2>Welcome to the {{hotelName}}</h2>
+
+<h1 #refTitle></h1>
+<div [hidden]="showRoom">
+  Showing room
+</div>
+
+<button (click)="toggle()">Toggle</button>
+<h2>Available rooms : {{rooms.availableRooms}}</h2>
+
+<div *ngIf="stream$ |async as rooms">
+  <app-room-list [rooms]="rooms" [title]="roomListTitle" (selectedRoom)="showRoomSelected($event)"></app-room-list>
+</div>
+<button routerLink="add">Add Room</button>
+
+<button (click)="editRoom()">Edit Room</button>
+
+<div *ngIf="selectedRooom">
+    {{selectedRooom | json}}
+</div>
+
+<router-outlet></router-outlet>
+
+<button (click)="delteRoom()">Remove Room</button>
+<button (click)="getPhotos()">Get Photos</button>
+<p>This is the get room stream: 
+
+  {{stream$ | async | json}}
+</p>
+
+<h1>{{getError$ | async}}</h1>
+
+<h1>Rom length | {{stream$Length | async}}</h1>

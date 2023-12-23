@@ -1,0 +1,12 @@
+<form>
+    <div class="form-group">
+        <input class="form-control" #newEmail="ngModel" appEmailvalidate type="email" name="email"  placeholder="Please enter your email" [(ngModel)]="email" />
+        <div>
+            {{newEmail.invalid}}
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" name="password" placeholder="Please enter your password" [(ngModel)]="password" />
+    </div>
+    <button class="btn btn-primary" (click)="login()">Login</button>
+</form>

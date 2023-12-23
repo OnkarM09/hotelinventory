@@ -1,0 +1,32 @@
+{{bookingForm.value | json}}
+
+<button mat-raised-button color="primary" (click)="addNickName()">Add Nick Name</button>
+<button mat-raised-button color="primary" (click)="removeNickName()">Remove Nick Name</button>
+<form [formGroup]="bookingForm" class="example-form" (ngSubmit)="bookingRoom()">
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Guest Name</mat-label>
+      <input type="text" matInput formControlName="guestName" />
+      <mat-error *ngIf="bookingForm.get('guestName')?.hasError('minlength')">Please enter more than 3 characters</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Guest Email</mat-label>
+      <input type="email" matInput formControlName="guestEmail" />
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <mat-label>Check-in Date</mat-label>
+      <input matInput [matDatepicker]="checkInDate" formControlName="checkinDate">
+      <mat-datepicker-toggle matIconSuffix [for]="checkInDate" ></mat-datepicker-toggle>
+      <mat-datepicker #checkInDate></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <mat-label>Check-out Date</mat-label>
+      <input matInput [matDatepicker]="checkOutDate" formControlName="checkoutDate">
+      <mat-datepicker-toggle matIconSuffix [for]="checkOutDate" ></mat-datepicker-toggle>
+      <mat-datepicker #checkOutDate></mat-datepicker>
+    </mat-form-field>
+    <button  mat-raised-button color="primary" [disabled]="bookingForm.invalid">Submit</button>
+    <mat-form-field appearance="fill" class="form-field" *ngIf="bookingForm.get('nickName')">
+      <mat-label>Nick Name</mat-label>
+      <input type="text" matInput formControlName="nickName" />
+    </mat-form-field>
+</form>

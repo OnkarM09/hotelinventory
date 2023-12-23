@@ -1,0 +1,28 @@
+<h1>{{title}}</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Room Type</th>
+            <th>Amenities</th>
+            <th>Price</th>
+            <th>Room Number</th>
+            <th>Check-In Time</th>
+            <th>Check-Out Time</th>
+            <th>Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of rooms">
+            <td>{{item.roomNumber}}</td>
+            <td>{{item.amenities}}</td>
+            <td>{{item.price}}</td>
+            <td>{{item.roomNumber}}</td>
+            <td>{{item.checkinTime | date : 'dd/MMM/yyyy' }}</td>
+            <td>{{item.checkoutTime | date : 'dd/MMM/yyyy'}}</td>
+            <td>{{item.rating }}</td>
+            <!-- <td><button (click)="sendDataToParent(item)">Send</button></td> -->
+            <td><button [routerLink]="['/rooms',item.roomNumber]">Book Room</button></td>
+        </tr>
+    </tbody>
+</table>
+
